@@ -3,8 +3,9 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Table from './components/table/index'
+import { NextPage } from 'next'
 
-export default function Home() {
+const Home: NextPage = () => {
 
   return (
     <>
@@ -50,3 +51,5 @@ export default function Home() {
     </>
   )
 }
+
+export default Home;
