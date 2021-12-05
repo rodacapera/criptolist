@@ -23,7 +23,7 @@ export interface stateInitial {
 }
 
 //validate if hydrate
-const reducer = (state, action) => {
+const reducer = (state: any, action: any) => {
   if (action.type === HYDRATE) {
     const nextState = {
       ...state, // use previous state
