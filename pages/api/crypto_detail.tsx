@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API, PATH_DETAIL_CRYPTO} from "../config/globalVars";
+import { API, PATH_DETAIL_CRYPTO} from "../../config/globalVars";
 
 const getCryptoDetail = async (req: any, res: any) => {
   // if(req.method === 'POST'){}
