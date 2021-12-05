@@ -8,25 +8,25 @@ import {
 } from "../../config/globalVars";
 import { AnyAction } from "redux";
 
-// type dataType = {
-//   name: string | null;
-//   id: string | null;
-//   symbol: string | null;
-//   nameid: string | null;
-//   rank: number;
-//   price_usd: string | null;
-//   percent_change_24h: string | null;
-//   percent_change_1h: string | null;
-//   percent_change_7d: string | null;
-//   price_btc: string | null;
-//   market_cap_usd: string | null;
-//   volume24: number;
-//   volume24a: number;
-//   csupply: string | null;
-//   tsupply: string | null;
-//   msupply: string | null;
-//   key: number;
-// };
+type dataType = {
+  name: string | null;
+  id: string | null;
+  symbol: string | null;
+  nameid: string | null;
+  rank: number;
+  price_usd: string | null;
+  percent_change_24h: string | null;
+  percent_change_1h: string | null;
+  percent_change_7d: string | null;
+  price_btc: string | null;
+  market_cap_usd: string | null;
+  volume24: number;
+  volume24a: number;
+  csupply: string | null;
+  tsupply: string | null;
+  msupply: string | null;
+  key: number;
+};
 
 export interface dataInitial {
   array: any,
@@ -34,7 +34,7 @@ export interface dataInitial {
 
 export interface argsDispatch {
   type: string;
-  payload: any;
+  payload: dataType;
 }
 
 //reducer

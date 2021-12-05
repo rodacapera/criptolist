@@ -1,6 +1,7 @@
 const API = 'https://api.coinlore.net/api/';
 
-const PATH_API_CRYPTO = 'http://localhost:3000/api/';
+const PATH_API_CRYPTO = 'https://criptolist-3v4fgitbf-rodacapera.vercel.app/'; //production
+// const PATH_API_CRYPTO = 'http://localhost:3000/api/'
 const GET_CRYPTO_API = 'crypto';
 const GET_CRYPTO_DETAIL_API = 'crypto_detail';
 const GET_MARKET_CRYPTO_API = 'market';
