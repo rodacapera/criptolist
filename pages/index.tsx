@@ -21,15 +21,19 @@ const Home: NextPage <IRecipeProps> = (props) => {
   const { getCrypto, getGlobalCrypto } = props;
   const [loader, setLoader] = useState(false);
   // const dispatch = useDispatch();
-  const cryptoList = useSelector(state => state.crypto.array);
-  const globalCryptoList = useSelector(state => state.global.array[0]);
+  const cryptoList = useSelector(state => state?.crypto?.array);
+  const globalCryptoList = useSelector(state => state?.global?.array[0]);
 
   cryptoList.length > 0 && !loader && setLoader(true);
   // console.log(globalCryptoList);
   
   useEffect(() => {
     // dispatch(getCryptoAction());
-    getCrypto();
+    let res = getCrypto(() => {
+      console.log('0000000');
+    });
+    console.log(res);
+    
     getGlobalCrypto();
     // console.log(getCryptos);
   }, [props]);

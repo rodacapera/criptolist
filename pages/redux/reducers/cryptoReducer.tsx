@@ -29,7 +29,7 @@ type dataType = {
 };
 
 export interface dataInitial {
-  array: any;
+  array: any,
 }
 
 //reducer

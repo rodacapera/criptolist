@@ -8,6 +8,7 @@ import cryptoReducer from "./reducers/cryptoReducer";
 import marketReducer from "./reducers/marketReducer";
 import globalCrypto from "./reducers/globalCrypto";
 
+
 //set reducers into combineReducers
 const rootReducer = combineReducers({
   crypto: cryptoReducer, 
@@ -15,8 +16,14 @@ const rootReducer = combineReducers({
   global: globalCrypto,
 });
 
+export interface stateInitial {
+  crypto: any,
+  market: any,
+  global: any,
+}
+
 //validate if hydrate
-const reducer = (state: any, action: any) => {
+const reducer = (state: stateInitial, action: any) => {
   if (action.type === HYDRATE) {
     const nextState = {
       ...state, // use previous state
