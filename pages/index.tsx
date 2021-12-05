@@ -36,7 +36,6 @@ const Home: NextPage<IRecipeProps> = (props) => {
   );
 
   cryptoList.length > 0 && !loader && setLoader(true);
-  // console.log(globalCryptoList);
 
   useEffect(() => {
     // dispatch(getCryptoAction());
