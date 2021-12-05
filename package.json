@@ -1,5 +1,5 @@
 {
-  "name": "cripto",
+  "name": "crypto",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,11 +10,18 @@
   "dependencies": {
     "@ant-design/charts": "^1.3.1",
     "@ant-design/icons": "^4.7.0",
+    "@types/react-redux": "^7.1.20",
     "antd": "^4.17.2",
+    "axios": "^0.24.0",
     "next": "12.0.4",
+    "next-redux-wrapper": "^7.0.5",
     "react": "17.0.2",
+    "react-devtools": "^4.21.0",
     "react-dom": "17.0.2",
-    "react-highlight-words": "^0.17.0"
+    "react-highlight-words": "^0.17.0",
+    "react-redux": "^7.2.6",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
     "@types/node": "16.11.10",
