@@ -9,7 +9,7 @@
     "prettier",
     "prettier/@typescript-eslint",
     "prettier/react",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
