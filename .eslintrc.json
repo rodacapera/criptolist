@@ -10,7 +10,6 @@
     "prettier/@typescript-eslint",
     "prettier/react",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
