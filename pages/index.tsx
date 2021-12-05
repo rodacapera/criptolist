@@ -40,13 +40,8 @@ const Home: NextPage<IRecipeProps> = (props) => {
 
   useEffect(() => {
     // dispatch(getCryptoAction());
-    let res = getCrypto(() => {
-      console.log("0000000");
-    });
-    console.log(res);
-
+    getCrypto();
     getGlobalCrypto();
-    // console.log(getCryptos);
   }, [props]);
 
   return (

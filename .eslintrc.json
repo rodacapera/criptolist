@@ -23,7 +23,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "jest", "next"],
+  "plugins": ["react", "jest", "next"],
   "rules": {
     "semi": ["error", "never"],
     "quotes": [2, "single"],
