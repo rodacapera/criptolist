@@ -4,9 +4,9 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
 
 //get reducers
-import cryptoReducer from "./reducers/cryptoReducer";
-import marketReducer from "./reducers/marketReducer";
-import globalCrypto from "./reducers/globalCrypto";
+import cryptoReducer from "../reducers/cryptoReducer";
+import marketReducer from "../reducers/marketReducer";
+import globalCrypto from "../reducers/globalCrypto";
 
 
 //set reducers into combineReducers

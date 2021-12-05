@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.css";
 import Table from "./components/table/index";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { useSelector, connect } from "react-redux";
-import myStore from "./redux/store";
+import myStore from "./redux/store/store";
 import { getCryptoAction } from "./redux/reducers/cryptoReducer";
 import { getGlobalCryptoAction } from "./redux/reducers/globalCrypto";
 import { Spin, Alert, Divider, BackTop } from "antd";
