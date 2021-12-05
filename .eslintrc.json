@@ -1,37 +1,21 @@
 {
-  "env": {
-    "browser": true,
-    "es6": true,
-    "jest": true,
-    "es2021": true,
-    "node": true
-  },
   "extends": [
+    "next/core-web-vitals",
     "eslint:recommended",
-    "plugin:react/recommended",
-    "prettier",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:react/recommended"
   ],
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
-    },
-    "project": "./src/tsconfig.json",
-    "ecmaVersion": 2018,
-    "sourceType": "module"
+    }
   },
-  "plugins": ["react", "@typescript-eslint", "jest", "next"],
+  "plugins": [
+    "react"
+  ],
   "rules": {
-    "semi": ["error", "never"],
-    "quotes": [2, "single"],
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
-    "react/no-unescaped-entities": "off",
-    "@next/next/no-page-custom-font": "off"
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error"
   }
 }
