@@ -16,13 +16,17 @@ interface IRecipeProps {
   getCrypto: any,
   getGlobalCrypto: any,
 }
+interface IRecipeState {
+  crypto: any,
+  global: any,
+}
 
 const Home: NextPage <IRecipeProps> = (props) => {
   const { getCrypto, getGlobalCrypto } = props;
   const [loader, setLoader] = useState(false);
   // const dispatch = useDispatch();
-  const cryptoList = useSelector(state => state?.crypto?.array);
-  const globalCryptoList = useSelector(state => state?.global?.array[0]);
+  const cryptoList = useSelector((state: IRecipeState) => state?.crypto?.array);
+  const globalCryptoList = useSelector((state: IRecipeState) => state?.global?.array[0]);
 
   cryptoList.length > 0 && !loader && setLoader(true);
   // console.log(globalCryptoList);
