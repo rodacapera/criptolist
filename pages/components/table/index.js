@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 import "antd/dist/antd.css";
 import { Table, Input, Button, Space } from "antd";
@@ -6,7 +6,7 @@ import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
-export default function antTable({ data }) {
+export default function AntTable({ data }) {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const refInput = useRef(null);
@@ -126,7 +126,7 @@ export default function antTable({ data }) {
       key: "price_usd",
       //   width: "20%",
       ...getColumnSearchProps("price_usd"),
-      render: (text, record) => (
+      render: (text) => (
         <Space size="middle">
             <span>$ {text}</span>
         </Space>

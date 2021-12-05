@@ -1,16 +1,16 @@
 import axios from "axios";
 import { PATH_API_CRYPTO, GET_MARKET_CRYPTO_API, GET_MARKET } from "../../config/globalVars";
 
-type dataType = {
-  base: string | null;
-  name: string | null;
-  price: number;
-  price_usd: number;
-  quote: string | null;
-  time: number;
-  volume: number;
-  volume_usd: number;
-};
+// type dataType = {
+//   base: string | null;
+//   name: string | null;
+//   price: number;
+//   price_usd: number;
+//   quote: string | null;
+//   time: number;
+//   volume: number;
+//   volume_usd: number;
+// };
 
 // constants
 const dataInitial = {
@@ -30,10 +30,7 @@ export default function cryptoReducer(state = dataInitial, action: any) {
 //actions
 export const getMarketCryptoAction =
   (id: number) =>
-  async (
-    dispatch: (arg0: { type: string; payload: dataType[] }) => void,
-    getState: any
-  ) => {
+  async ( dispatch: any ) => {
     try {
       const result = await axios.post(PATH_API_CRYPTO + GET_MARKET_CRYPTO_API, {id: id});
       dispatch({

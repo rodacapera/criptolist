@@ -12,10 +12,12 @@ export default function Description() {
   const cryptoListDetail = useSelector((state) => state.crypto.array);
   const marketList = useSelector((state) => state.market.array);
 
+  console.log(cryptoListDetail, marketList);
+
   useEffect(() => {
         dispatch(getMarketCryptoAction(id));
         dispatch(getDetailCryptoAction(id));
-  }, []);
+  }, [dispatch, id]);
   return (
     <div>
       <h1>Hola Descripción</h1>

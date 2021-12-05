@@ -8,28 +8,33 @@ import {
 } from "../../config/globalVars";
 import { AnyAction } from "redux";
 
-type dataType = {
-  name: string | null;
-  id: string | null;
-  symbol: string | null;
-  nameid: string | null;
-  rank: number;
-  price_usd: string | null;
-  percent_change_24h: string | null;
-  percent_change_1h: string | null;
-  percent_change_7d: string | null;
-  price_btc: string | null;
-  market_cap_usd: string | null;
-  volume24: number;
-  volume24a: number;
-  csupply: string | null;
-  tsupply: string | null;
-  msupply: string | null;
-  key: number;
-};
+// type dataType = {
+//   name: string | null;
+//   id: string | null;
+//   symbol: string | null;
+//   nameid: string | null;
+//   rank: number;
+//   price_usd: string | null;
+//   percent_change_24h: string | null;
+//   percent_change_1h: string | null;
+//   percent_change_7d: string | null;
+//   price_btc: string | null;
+//   market_cap_usd: string | null;
+//   volume24: number;
+//   volume24a: number;
+//   csupply: string | null;
+//   tsupply: string | null;
+//   msupply: string | null;
+//   key: number;
+// };
 
 export interface dataInitial {
   array: any,
+}
+
+export interface argsDispatch {
+  type: string;
+  payload: any;
 }
 
 //reducer
@@ -53,7 +58,7 @@ export default function cryptoReducer(
 //actions
 export const getCryptoAction =
   () =>
-  async (dispatch: (arg0: { type: string; payload: dataType[] }) => void) => {
+  async ( dispatch: any ) => {
     try {
       const result = await axios.get(PATH_API_CRYPTO + GET_CRYPTO_API);
       dispatch({
@@ -66,11 +71,8 @@ export const getCryptoAction =
   };
 
 export const getDetailCryptoAction =
-  (id: number) =>
-  async (
-    dispatch: (arg0: { type: string; payload: dataType[] }) => void,
-    getState: any
-  ) => {
+  ( id: number ) =>
+  async ( dispatch: any ) => {
     try {
       const result = await axios.post(PATH_API_CRYPTO + GET_CRYPTO_DETAIL_API, {
         id: id,
