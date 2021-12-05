@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Table from './components/table/index'
-import { bindActionCreators } from 'redux'
+import { AnyAction, bindActionCreators, Dispatch } from 'redux'
 import { useDispatch, useSelector, connect } from 'react-redux'
 import myStore from './redux/store'
 import { getCryptoAction } from './redux/reducers/cryptoReducer'
@@ -12,7 +12,12 @@ import { getGlobalCryptoAction } from './redux/reducers/globalCrypto'
 import { Spin, Alert, Divider, BackTop } from 'antd';
 import { BankFilled, BankOutlined, BankTwoTone, DollarOutlined, WalletOutlined } from "@ant-design/icons";
 
-const Home: NextPage = (props) => {
+interface IRecipeProps {
+  getCrypto: any,
+  getGlobalCrypto: any,
+}
+
+const Home: NextPage <IRecipeProps> = (props) => {
   const { getCrypto, getGlobalCrypto } = props;
   const [loader, setLoader] = useState(false);
   // const dispatch = useDispatch();
@@ -20,13 +25,14 @@ const Home: NextPage = (props) => {
   const globalCryptoList = useSelector(state => state.global.array[0]);
 
   cryptoList.length > 0 && !loader && setLoader(true);
-  console.log(globalCryptoList);
+  // console.log(globalCryptoList);
   
   useEffect(() => {
     // dispatch(getCryptoAction());
     getCrypto();
     getGlobalCrypto();
-  }, []);
+    // console.log(getCryptos);
+  }, [props]);
 
   return (
     <>
@@ -37,7 +43,7 @@ const Home: NextPage = (props) => {
       </Head>
       
       <Image src="/bg4.jpg" alt="Banner principal" width={100} height={20} layout="responsive" />
-      
+      {/* {cryptoList} */}
       <div className={styles.container}>
         <main className={styles.main}>
           <BackTop />
@@ -95,7 +101,7 @@ export const getStaticProps = myStore.getStaticProps((store) => () => {
   store.dispatch(getGlobalCryptoAction())
 })
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     getCrypto: bindActionCreators(getCryptoAction, dispatch),
     getGlobalCrypto: bindActionCreators(getGlobalCryptoAction, dispatch),

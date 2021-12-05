@@ -6,7 +6,7 @@ import {
   GET_CRYPTO,
   GET_DETAIL,
 } from "../../config/globalVars";
-import { AnyAction } from 'redux';
+import { AnyAction } from "redux";
 
 type dataType = {
   name: string | null;
@@ -29,11 +29,14 @@ type dataType = {
 };
 
 export interface dataInitial {
-  array: any
+  array: any;
 }
 
 //reducer
-export default function cryptoReducer(state: dataInitial = {array: []}, action: AnyAction) {
+export default function cryptoReducer(
+  state: dataInitial = { array: [] },
+  action: AnyAction
+) {
   switch (action.type) {
     case GET_CRYPTO:
       action.payload.map((element: any, key: number) => {
@@ -50,12 +53,9 @@ export default function cryptoReducer(state: dataInitial = {array: []}, action: 
 //actions
 export const getCryptoAction =
   () =>
-  async (
-    dispatch: (arg0: { type: string; payload: dataType[] }) => void,
-    getState: any
-  ) => {
+  async (dispatch: (arg0: { type: string; payload: dataType[] }) => void) => {
     try {
-      const result = await axios.get( PATH_API_CRYPTO + GET_CRYPTO_API );
+      const result = await axios.get(PATH_API_CRYPTO + GET_CRYPTO_API);
       dispatch({
         type: GET_CRYPTO,
         payload: result.data.data,
@@ -72,7 +72,9 @@ export const getDetailCryptoAction =
     getState: any
   ) => {
     try {
-      const result = await axios.post( PATH_API_CRYPTO + GET_CRYPTO_DETAIL_API, {id: id} );
+      const result = await axios.post(PATH_API_CRYPTO + GET_CRYPTO_DETAIL_API, {
+        id: id,
+      });
       dispatch({
         type: GET_DETAIL,
         payload: result.data[0],
