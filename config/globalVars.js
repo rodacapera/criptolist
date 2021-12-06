@@ -1,13 +1,13 @@
 const API = 'https://api.coinlore.net/api/';
 
-const PATH_API_CRYPTO = 'https://criptolist-3v4fgitbf-rodacapera.vercel.app/api/'; //production
-// const PATH_API_CRYPTO = 'http://localhost:3000/api/'
-const GET_CRYPTO_API = 'crypto';
-const GET_CRYPTO_DETAIL_API = 'crypto_detail';
-const GET_MARKET_CRYPTO_API = 'market';
-const GET_GLOBAL_CRYPTO = 'global_crypto';
+// const PATH_API_CRYPTO = 'https://criptolist-3v4fgitbf-rodacapera.vercel.app/api/'; //production
+const PATH_API_CRYPTO = 'http://localhost:3000/api/'
+const GET_CRYPTO_API = 'crypto/';
+const GET_CRYPTO_DETAIL_API = 'crypto_detail/';
+const GET_MARKET_CRYPTO_API = 'market/';
+const GET_GLOBAL_CRYPTO = 'global_crypto/';
 
-const PATH_ALL_CRYPTO = 'tickers/?start=100&limit=100';
+const PATH_ALL_CRYPTO = 'tickers/';
 const PATH_DETAIL_CRYPTO = 'ticker/?id=';
 const PATH_MARKET_CRYPTO = 'coin/markets/?id=';
 const PATH_GLOBAL_CRYPTO = 'global'

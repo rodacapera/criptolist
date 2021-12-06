@@ -128,3 +128,12 @@
 .noCursor{
   cursor: auto;
 }
+.container_header {
+  min-height: 14vh;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.separate{
+  padding-bottom: 20px;
+}

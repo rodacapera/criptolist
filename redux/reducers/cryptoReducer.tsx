@@ -74,9 +74,13 @@ export const getDetailCryptoAction =
   ( id: number ) =>
   async ( dispatch: any ) => {
     try {
+      // console.log('url de criptoreducer', PATH_API_CRYPTO + GET_CRYPTO_DETAIL_API);
+      // console.log('id de cryptroreducer', id);
       const result = await axios.post(PATH_API_CRYPTO + GET_CRYPTO_DETAIL_API, {
         id: id,
       });
+      // console.log('result de crypto reducer', result);
+      
       dispatch({
         type: GET_DETAIL,
         payload: result.data[0],

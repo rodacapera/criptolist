@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, ReactChild, ReactFragment, ReactPortal, SetStateAction } from "react";
 
 import "antd/dist/antd.css";
 import { Table, Input, Button, Space } from "antd";
@@ -6,18 +6,23 @@ import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
-export default function AntTable({ data }) {
+export default function AntTable({ data }: any) {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
-  const refInput = useRef(null);
-
-  const getColumnSearchProps = (dataIndex) => ({
+  const refInput = useRef<any>(null);
+  interface IReceiptFilter {
+    setSelectedKeys: any;
+    selectedKeys: any;
+    confirm: any;
+    clearFilters: any;
+  }
+  const getColumnSearchProps = (dataIndex: any) => ({
     filterDropdown: ({
       setSelectedKeys,
       selectedKeys,
       confirm,
       clearFilters,
-    }) => (
+    }: IReceiptFilter) => (
       <div style={{ padding: 8 }}>
         <Input
           ref={refInput}
@@ -60,22 +65,20 @@ export default function AntTable({ data }) {
         </Space>
       </div>
     ),
-    filterIcon: (filtered) => (
+    filterIcon: (filtered: any) => (
       <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
-    onFilter: (value, record) =>
-      record[dataIndex]
-        ? record[dataIndex]
-            .toString()
+    onFilter: (value: string, record: { [x: string]: { toString: () => string; }; }) =>
+      record[dataIndex]? record[dataIndex].toString()
             .toLowerCase()
             .includes(value.toLowerCase())
         : "",
-    onFilterDropdownVisibleChange: (visible) => {
+    onFilterDropdownVisibleChange: (visible: any) => {
       if (visible) {
-        setTimeout(() => refInput.current.select(), 100);
+        setTimeout(() => refInput!.current?.select, 100);
       }
     },
-    render: (text) =>
+    render: (text: { toString: () => string; }) =>
       searchedColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
@@ -88,18 +91,18 @@ export default function AntTable({ data }) {
       ),
   });
 
-  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+  const handleSearch = (selectedKeys: SetStateAction<string>[], confirm: () => void, dataIndex: SetStateAction<string>) => {
     confirm();
     setSearchText(selectedKeys[0]);
     setSearchedColumn(dataIndex);
   };
 
-  const handleReset = (clearFilters) => {
+  const handleReset = (clearFilters: () => void) => {
     clearFilters();
     setSearchText("");
   };
 
-  const columns = [
+  const columns: any = [
     {
       title: "Name",
       dataIndex: "name",
@@ -126,7 +129,7 @@ export default function AntTable({ data }) {
       key: "price_usd",
       //   width: "20%",
       ...getColumnSearchProps("price_usd"),
-      render: (text) => (
+      render: (text: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined) => (
         <Space size="middle">
             <span>$ {text}</span>
         </Space>
@@ -137,13 +140,29 @@ export default function AntTable({ data }) {
       dataIndex: "id",
       key: "id",
       // with: "10%",
-      render: (text, record) => (
-        <Space size="middle">
-          <Link href={{pathname: '/description', query: {id: record.id}}} >
-            Detail 
-          </Link>
-        </Space>
-      ),
+      render: (text: string , record: { id: number; nameid: string; }) => {
+        const query = {
+          id: record.id, 
+          name_id: record.nameid, 
+          routes: JSON.stringify([
+            {
+              path: '/', 
+              breadcrumbName: 'Home'
+            }, 
+            {
+              path: '/description', 
+              breadcrumbName: 'Description'
+            }
+          ]) 
+        }
+        return (
+          <Space size="middle">
+            <Link href={{pathname: '/description', query: query}} >
+              Detail 
+            </Link>
+          </Space>
+        )
+      }
     },
     // {
     //   title: "Address",
@@ -154,5 +173,6 @@ export default function AntTable({ data }) {
     //   sortDirections: ["descend", "ascend"],
     // },
   ];
+  
   return <Table columns={columns} dataSource={data} />;
 }

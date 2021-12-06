@@ -18,13 +18,16 @@
     "react-devtools": "^4.21.0",
     "react-dom": "17.0.2",
     "react-highlight-words": "^0.17.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-redux": "^7.2.6",
+    "react-script-hook": "^1.5.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
     "@types/node": "16.11.11",
     "@types/react": "17.0.37",
+    "@types/react-highlight-words": "^0.16.3",
     "eslint": "^7.32.0",
     "eslint-config-next": "12.0.7",
     "eslint-plugin-react": "^7.27.1",

@@ -32,7 +32,10 @@ export const getMarketCryptoAction =
   (id: number) =>
   async ( dispatch: any ) => {
     try {
+      // console.log('url market reducer', PATH_API_CRYPTO + GET_MARKET_CRYPTO_API);
+      // console.log('id market reducer', id);
       const result = await axios.post(PATH_API_CRYPTO + GET_MARKET_CRYPTO_API, {id: id});
+      // console.log('result de market reducer', result);
       dispatch({
         type: GET_MARKET,
         payload: result.data,
