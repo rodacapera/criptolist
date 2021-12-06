@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMarketCryptoAction } from "../redux/reducers/marketReducer";
 import useScript from "react-script-hook";
 import Image from "next/image";
-import { PageHeader, List, Avatar, Skeleton, Divider } from 'antd';
+import { PageHeader, List, Avatar, Skeleton, Divider, Spin } from "antd";
 import Router from "next/router";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -16,7 +16,7 @@ interface IRecipeState {
   market: any;
 }
 
-const  Description: NextPage = () => {
+const Description: NextPage = () => {
   const { query } = useRouter();
   const id: any = query.id;
   const name_id: any = query.name_id;
@@ -52,12 +52,14 @@ const  Description: NextPage = () => {
     );
   };
 
-  const loadMoreData = useCallback( () => {
+  const loadMoreData = useCallback(() => {
     data.length === 0 && setData([...data, ...marketList]);
-  },[marketList]);
+  }, [marketList]);
 
   useEffect(() => {
-    loadMoreData();
+    setTimeout(() => {
+      loadMoreData();
+    }, 2000);
   }, [loadMoreData]);
 
   useEffect(() => {
@@ -82,65 +84,92 @@ const  Description: NextPage = () => {
         data-ccolor="#428bca"
         data-pcolor="#428bca"
       ></div>
-      <PageHeader
-        className="site-page-header"
-        title={title}
-        breadcrumb={{ routes }}
-        breadcrumbRender={custom}
-        subTitle="Description Crypto currency"
-      />
       <div className={styles.container}>
-        <div
-          className="coinlore-coin-widget"
-          data-mcap="1"
-          data-mcurrency="usd"
-          data-d7="1"
-          data-cwidth="100%"
-          data-rank="1"
-          data-vol="2"
-          data-id={name_id}
-          data-bcolor="#fff"
-          data-tcolor="#333"
-          data-ccolor="#333"
-          data-pcolor="#333"
-        ></div>
-        <Divider/>
-        <div
-          id="scrollableDiv"
-          style={{
-            height: 400,
-            overflow: "auto",
-            padding: "0 16px",
-            border: "1px solid rgba(140, 140, 140, 0.35)",
-            marginBottom: 30,
-          }}
-        >
-          <InfiniteScroll
-            dataLength={data.length}
-            next={loadMoreData}
-            hasMore={data.length < 50}
-            loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-            endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
-            scrollableTarget="scrollableDiv"
+        <div style={{ marginTop: 20 }}></div>
+        {routes.length > 1 ? (
+          <PageHeader
+            className="site-page-header"
+            title={title}
+            breadcrumb={{ routes }}
+            breadcrumbRender={custom}
+            subTitle="Description Crypto currency"
+          />
+        ) : (
+          <Spin />
+        )}
+        <main className={styles.main}>
+          <div
+            className="coinlore-coin-widget"
+            data-mcap="1"
+            data-mcurrency="usd"
+            data-d7="1"
+            data-cwidth="100%"
+            data-rank="1"
+            data-vol="2"
+            data-id={name_id}
+            data-bcolor="#fff"
+            data-tcolor="#333"
+            data-ccolor="#333"
+            data-pcolor="#333"
+          ></div>
+          <Divider />
+          <div
+            id="scrollableDiv"
+            style={{
+              height: 400,
+              width: "60%",
+              overflow: "auto",
+              padding: "0 16px",
+              border: "1px solid rgba(140, 140, 140, 0.35)",
+              marginBottom: 30,
+            }}
           >
-            <List
-              dataSource={data}
-              renderItem={(item: {id: number, name: string, base: string, price: number, price_usd: number}) => (
-                <List.Item key={item.id}>
-                  <List.Item.Meta
-                    avatar={<Avatar src={'https://i.picsum.photos/id/180/2400/1600.jpg?hmac=Ig-CXcpNdmh51k3kXpNqNqcDYTwXCIaonYiBOnLXBb8'} />}
-                    title={<a href="#">{item.name}</a>}
-                    description={item.base + ' ' + item.price}
-                  />
-                  <div>$ {parseFloat(Math.round(item.price_usd).toString()).toFixed(2)}</div>
-                </List.Item>
-              )}
-            />
-          </InfiniteScroll>
-        </div>
-      </div>
-
-      <footer className={styles.footer}>
+            {data.length > 1 ? (
+              <InfiniteScroll
+                dataLength={data.length}
+                next={loadMoreData}
+                hasMore={data.length < 50}
+                loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
+                endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+                scrollableTarget="scrollableDiv"
+              >
+                <List
+                  dataSource={data}
+                  renderItem={(item: {
+                    id: number;
+                    name: string;
+                    base: string;
+                    price: number;
+                    price_usd: number;
+                  }) => (
+                    <List.Item key={item.id}>
+                      <List.Item.Meta
+                        avatar={
+                          <Avatar
+                            src={
+                              "https://i.picsum.photos/id/180/2400/1600.jpg?hmac=Ig-CXcpNdmh51k3kXpNqNqcDYTwXCIaonYiBOnLXBb8"
+                            }
+                          />
+                        }
+                        title={<a href="#">{item.name}</a>}
+                        description={item.base + " " + item.price}
+                      />
+                      <div>
+                        ${" "}
+                        {parseFloat(
+                          Math.round(item.price_usd).toString()
+                        ).toFixed(2)}
+                      </div>
+                    </List.Item>
+                  )}
+                />
+              </InfiniteScroll>
+            ) : (
+              <Spin />
+            )}
+          </div>
+        </main>
+        <footer className={styles.footer}>
           <a
             href="https://github.com/rodacapera"
             target="_blank"
@@ -149,8 +178,9 @@ const  Description: NextPage = () => {
             Powered by <span className={styles.logo}>Rhonald Capera</span>
           </a>
         </footer>
+      </div>
     </>
   );
-}
+};
 
 export default Description;

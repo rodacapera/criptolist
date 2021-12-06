@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+// import '../utils/antDesignStyles.less';
 import type { AppProps } from 'next/app'
 // import { Provider } from 'react-redux'
 import myStore from '../redux/store/store'

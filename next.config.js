@@ -5,7 +5,7 @@ module.exports = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://criptolist-3v4fgitbf-rodacapera.vercel.app/:path*',
+        destination: 'https://criptolist-3v4fgitbf-rodacapera.vercel.app/api/:path*',
       },
     ]
   },
