@@ -22,14 +22,14 @@ export default function Description() {
   const routess: any | any[] = query.routes;
   const dispatch = useDispatch();
   const title = `Description to ${name_id}`;
-  const cryptoListDetail = useSelector(
-    (state: IRecipeState) => state.crypto.array
-  );
+  // const cryptoListDetail = useSelector(
+  //   (state: IRecipeState) => state.crypto.array
+  // );
   const marketList = useSelector((state: IRecipeState) => state.market.array);
   const [data, setData] = useState<any[]>([]);
   useScript({ src: "https://widget.coinlore.com/widgets/ticker-widget.js" });
   useScript({ src: "https://widget.coinlore.com/widgets/new-widget.js" });
-  console.log(cryptoListDetail, marketList);
+  // console.log(cryptoListDetail, marketList);
   const routes: any = routess ? JSON.parse(routess) : [];
   const custom = (props: any) => {
     return (
@@ -61,7 +61,7 @@ export default function Description() {
 
   useEffect(() => {
     dispatch(getMarketCryptoAction(id));
-    dispatch(getDetailCryptoAction(id));
+    // dispatch(getDetailCryptoAction(id));
   }, [dispatch, id]);
 
   return (
