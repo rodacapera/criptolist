@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMarketCryptoAction } from "../../redux/reducers/marketReducer";
 import useScript from "react-script-hook";
 import Image from "next/image";
-import { PageHeader, List, Avatar, Skeleton, Divider } from "antd";
+import { PageHeader, List, Avatar, Skeleton, Divider } from 'antd';
 import Router from "next/router";
 import InfiniteScroll from "react-infinite-scroll-component";
 
