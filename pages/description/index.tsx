@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +6,7 @@ import { getDetailCryptoAction } from "../../redux/reducers/cryptoReducer";
 import { getMarketCryptoAction } from "../../redux/reducers/marketReducer";
 import useScript from "react-script-hook";
 import Image from "next/image";
-import { PageHeader, List, message, Avatar, Skeleton, Divider } from "antd";
+import { PageHeader, List, Avatar, Skeleton, Divider } from "antd";
 import Router from "next/router";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -18,7 +17,6 @@ interface IRecipeState {
 
 export default function Description() {
   const { query } = useRouter();
-  // console.log('data recibida', useRouter());
   const id: any = query.id;
   const name_id: any = query.name_id;
   const routess: any | any[] = query.routes;
@@ -28,7 +26,6 @@ export default function Description() {
     (state: IRecipeState) => state.crypto.array
   );
   const marketList = useSelector((state: IRecipeState) => state.market.array);
-  const [loading, setLoading] = useState(false);
   const [data, setData] = useState<any[]>([]);
   useScript({ src: "https://widget.coinlore.com/widgets/ticker-widget.js" });
   useScript({ src: "https://widget.coinlore.com/widgets/new-widget.js" });
@@ -60,7 +57,6 @@ export default function Description() {
 
   useEffect(() => {
     loadMoreData();
-    // loadMoreData();
   }, [loadMoreData]);
 
   useEffect(() => {
