@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { NextPage } from "next";
-import styles from "../../styles/Home.module.css";
+import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 // import { getDetailCryptoAction } from "../../redux/reducers/cryptoReducer";
-import { getMarketCryptoAction } from "../../redux/reducers/marketReducer";
+import { getMarketCryptoAction } from "../redux/reducers/marketReducer";
 import useScript from "react-script-hook";
 import Image from "next/image";
 import { PageHeader, List, Avatar, Skeleton, Divider } from 'antd';
