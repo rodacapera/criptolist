@@ -53,7 +53,7 @@ export default function Description() {
 
   const loadMoreData = useCallback( () => {
     data.length === 0 && setData([...data, ...marketList]);
-  },[data, marketList]);
+  },[marketList]);
 
   useEffect(() => {
     loadMoreData();
