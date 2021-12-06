@@ -30,7 +30,7 @@ export default function Description() {
   useScript({ src: "https://widget.coinlore.com/widgets/ticker-widget.js" });
   useScript({ src: "https://widget.coinlore.com/widgets/new-widget.js" });
   console.log(cryptoListDetail, marketList);
-  const routes: object | any | any[] = JSON.parse(routess);
+  const routes: any = JSON.parse(routess);
   const custom = (props: any) => {
     return (
       <div>
