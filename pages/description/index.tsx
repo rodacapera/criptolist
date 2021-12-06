@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { NextPage } from "next";
 import styles from "../../styles/Home.module.css";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +16,7 @@ interface IRecipeState {
   market: any;
 }
 
-export default function Description() {
+const  Description: NextPage = () => {
   const { query } = useRouter();
   const id: any = query.id;
   const name_id: any = query.name_id;
@@ -151,3 +152,5 @@ export default function Description() {
     </>
   );
 }
+
+export default Description;
