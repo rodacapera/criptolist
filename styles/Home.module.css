@@ -134,6 +134,32 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
+.container_header_crypto {
+  min-height: 14vh;
+  width: 100%;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
 .separate{
   padding-bottom: 20px;
+}
+.description_container{
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+.description_sub_container{
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+.body_description_home{
+  margin-bottom: 50px;
+}
+.center{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.precharge{
+  height: 100px;
 }

@@ -107,6 +107,7 @@ export default function AntTable({ data }: any) {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      responsive: ['md'],
       //   width: "30%",
       ...getColumnSearchProps("name"),
     },

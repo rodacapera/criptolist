@@ -35,8 +35,8 @@ const Home: NextPage<IRecipeProps> = (props) => {
     (state: IRecipeState) => state?.global?.array[0]
   );
   useScript({ src: "https://widget.coinlore.com/widgets/ticker-widget.js" });
-  useScript({ src: "https://widget.coinlore.com/widgets/new-widget.js" });
-  useScript({
+  const widget = useScript({ src: "https://widget.coinlore.com/widgets/new-widget.js" });
+  const listWidget = useScript({
     src: "https://widget.coinlore.com/widgets/coinlore-list-widget.js",
   });
 
@@ -78,39 +78,48 @@ const Home: NextPage<IRecipeProps> = (props) => {
             Encuentra en un solo sitio{" "}
             <code className={styles.code}>Todas las crypto monedas</code>
           </p>
-          <div className={styles.container_header}>
+          <div className={styles.container_header_crypto}>
             <Row>
-              <Col className={styles.separate} xs={{ span: 24, offset: 0 }} lg={{ span: 6, offset: 4 }}>
-                <div
-                  className="coinlore-coin-widget"
-                  data-mcap="1"
-                  data-mcurrency="usd"
-                  data-d7="1"
-                  data-cwidth="100%"
-                  data-rank="1"
-                  data-vol="2"
-                  data-id="bitcoin"
-                  data-bcolor="#fff"
-                  data-tcolor="#333"
-                  data-ccolor="#333"
-                  data-pcolor="#333"
-                ></div>
+              <Col className={styles.body_description_home} xs={{ span: 24, offset: 0 }} lg={{ span: 6, offset: 4 }}>
+                <div className={styles.precharge}>
+                  {!widget[0] ? (
+                    <div
+                      className="coinlore-coin-widget"
+                      data-mcap="1"
+                      data-mcurrency="usd"
+                      data-d7="1"
+                      data-cwidth="100%"
+                      data-rank="1"
+                      data-vol="2"
+                      data-id={'bitcoin'}
+                      data-bcolor="#fff"
+                      data-tcolor="#333"
+                      data-ccolor="#333"
+                      data-pcolor="#333"
+                    ></div>
+                  ) : (<div className={styles.center}><Spin /> Loading ...</div>)}
+                </div>
               </Col>
               <Col xs={{ span: 24, offset: 0 }} lg={{ span: 8, offset: 2 }}>
-                <div
-                  className="coinlore-list-widget"
-                  data-mcurrency="eur"
-                  data-top="5"
-                  data-cwidth="50%"
-                  data-bcolor="#fff"
-                  data-coincolor="#428bca"
-                  data-pricecolor="#4c4c4c"
-                ></div>
+                <div className={styles.precharge}>
+                  {!listWidget[0] ? (
+                    <div
+                      className="coinlore-list-widget"
+                      data-mcurrency="eur"
+                      data-top="5"
+                      data-cwidth="50%"
+                      data-bcolor="#fff"
+                      data-coincolor="#428bca"
+                      data-pricecolor="#4c4c4c"
+                    ></div>
+                    ) : (<div className={styles.center}><Spin /> Loading ...</div>)}
+                </div>
               </Col>
-              </Row>
+            </Row>
           </div>
+          <Divider />
           {/* <Link href="/description">Description</Link> */}
-          <div>
+          <div className={styles.description_sub_container}>
             <strong className={styles.noCursor}>
               <WalletOutlined /> Cryptocurrencies:{" "}
               {globalCryptoList?.coins_count} {""}
@@ -119,7 +128,6 @@ const Home: NextPage<IRecipeProps> = (props) => {
             </strong>
             button.
           </div>
-          <Divider />
           <div className={styles.table}>
             {!loader ? (
               <Spin tip="Loading...">

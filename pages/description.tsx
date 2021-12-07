@@ -7,7 +7,7 @@ import { useDispatch, useSelector, connect } from "react-redux";
 import { getMarketCryptoAction } from "../redux/reducers/marketReducer";
 import useScript from "react-script-hook";
 import Image from "next/image";
-import { PageHeader, List, Avatar, Skeleton, Divider, Spin } from "antd";
+import { PageHeader, List, Avatar, Skeleton, Divider, Spin, Row, Col } from "antd";
 import Router from "next/router";
 import InfiniteScroll from "react-infinite-scroll-component";
 import 'antd/dist/antd.css';
@@ -29,7 +29,7 @@ const Description: NextPage = () => {
   const marketList = useSelector((state: IRecipeState) => state.market.array);
   const [data, setData] = useState<any[]>([]);
   useScript({ src: "https://widget.coinlore.com/widgets/ticker-widget.js" });
-  useScript({ src: "https://widget.coinlore.com/widgets/new-widget.js" });
+  const widget = useScript({ src: "https://widget.coinlore.com/widgets/new-widget.js" });
   // console.log(cryptoListDetail, marketList);
   const routes: any = routess ? JSON.parse(routess) : [];
   const custom = (props: any) => {
@@ -41,7 +41,7 @@ const Description: NextPage = () => {
               key={key}
               href="#"
               style={{ color: key === 0 ? "#ccc" : "#000" }}
-              onClick={() => (key === 0 ? Router.back() : null)}
+              onClick={(e) => (e.preventDefault(), key === 0 ? Router.back() : null)}
             >
               {" "}
               {element.breadcrumbName} {key === 0 && "/"}{" "}
@@ -53,13 +53,13 @@ const Description: NextPage = () => {
   };
 
   const loadMoreData = useCallback(() => {
-    data.length === 0 && setData([...data, ...marketList]);
+    marketList.length > 0 && data.length === 0 && setData([...data, ...marketList]);
   }, [marketList]);
 
   useEffect(() => {
-    setTimeout(() => {
+    // setTimeout(() => {
       loadMoreData();
-    }, 2000);
+    // }, 2000);
   }, [loadMoreData]);
 
   useEffect(() => {
@@ -84,91 +84,95 @@ const Description: NextPage = () => {
         data-ccolor="#428bca"
         data-pcolor="#428bca"
       ></div>
+      <div style={{ marginTop: 20 }}></div>
+      <PageHeader
+          className="site-page-header"
+          title={title}
+          breadcrumb={{ routes }}
+          breadcrumbRender={custom}
+          subTitle="Data for the cryptocurrency"
+        />
       <div className={styles.container}>
-        <div style={{ marginTop: 20 }}></div>
-        {routes.length > 1 ? (
-          <PageHeader
-            className="site-page-header"
-            title={title}
-            breadcrumb={{ routes }}
-            breadcrumbRender={custom}
-            subTitle="Description Crypto currency"
-          />
-        ) : (
-          <Spin />
-        )}
-        <main className={styles.main}>
-          <div
-            className="coinlore-coin-widget"
-            data-mcap="1"
-            data-mcurrency="usd"
-            data-d7="1"
-            data-cwidth="100%"
-            data-rank="1"
-            data-vol="2"
-            data-id={name_id}
-            data-bcolor="#fff"
-            data-tcolor="#333"
-            data-ccolor="#333"
-            data-pcolor="#333"
-          ></div>
-          <Divider />
-          <div
-            id="scrollableDiv"
-            style={{
-              height: 400,
-              width: "60%",
-              overflow: "auto",
-              padding: "0 16px",
-              border: "1px solid rgba(140, 140, 140, 0.35)",
-              marginBottom: 30,
-            }}
-          >
-            {data.length > 1 ? (
-              <InfiniteScroll
-                dataLength={data.length}
-                next={loadMoreData}
-                hasMore={data.length < 50}
-                loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-                endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
-                scrollableTarget="scrollableDiv"
-              >
-                <List
-                  dataSource={data}
-                  renderItem={(item: {
-                    id: number;
-                    name: string;
-                    base: string;
-                    price: number;
-                    price_usd: number;
-                  }) => (
-                    <List.Item key={item.id}>
-                      <List.Item.Meta
-                        avatar={
-                          <Avatar
-                            src={
-                              "https://i.picsum.photos/id/180/2400/1600.jpg?hmac=Ig-CXcpNdmh51k3kXpNqNqcDYTwXCIaonYiBOnLXBb8"
-                            }
-                          />
-                        }
-                        title={<a href="#">{item.name}</a>}
-                        description={item.base + " " + item.price}
-                      />
-                      <div>
-                        ${" "}
-                        {parseFloat(
-                          Math.round(item.price_usd).toString()
-                        ).toFixed(2)}
-                      </div>
-                    </List.Item>
-                  )}
-                />
-              </InfiniteScroll>
-            ) : (
-              <Spin />
-            )}
-          </div>
-        </main>
+        <Row>
+          <Col className={styles.description_container} xs={{ span: 24, offset: 0 }} lg={{ span: 6, offset: 2 }}>
+            <div className={styles.precharge}>
+              {!widget[0] ? (
+                <div
+                  className="coinlore-coin-widget"
+                  data-mcap="1"
+                  data-mcurrency="usd"
+                  data-d7="1"
+                  data-cwidth="100%"
+                  data-rank="1"
+                  data-vol="2"
+                  data-id={name_id}
+                  data-bcolor="#fff"
+                  data-tcolor="#333"
+                  data-ccolor="#333"
+                  data-pcolor="#333"
+                ></div>
+              ) : (<div className={styles.center}><Spin /> Loading ...</div>)}
+            </div>
+          </Col>
+          <Col xs={{ span: 24, offset: 0 }} lg={{ span: 14, offset: 2 }}>
+            <h3>Markets For Coin</h3>
+            <div
+              id="scrollableDiv"
+              style={{
+                height: 400,
+                // width: "80%",
+                overflow: "auto",
+                padding: "0 16px",
+                border: "1px solid rgba(140, 140, 140, 0.35)",
+                marginBottom: 30,
+              }}
+            >
+              {data.length > 1 ? (
+                <InfiniteScroll
+                  dataLength={data.length}
+                  next={loadMoreData}
+                  hasMore={data.length < 50}
+                  loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
+                  endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+                  scrollableTarget="scrollableDiv"
+                >
+                  <List
+                    dataSource={data}
+                    renderItem={(item: {
+                      id: number;
+                      name: string;
+                      base: string;
+                      price: number;
+                      price_usd: number;
+                    }) => (
+                      <List.Item key={item.id}>
+                        <List.Item.Meta
+                          avatar={
+                            <Avatar
+                              src={
+                                "https://i.picsum.photos/id/180/2400/1600.jpg?hmac=Ig-CXcpNdmh51k3kXpNqNqcDYTwXCIaonYiBOnLXBb8"
+                              }
+                            />
+                          }
+                          title={<a href="#">{item.name}</a>}
+                          description={item.base + " " + item.price}
+                        />
+                        <div>
+                          ${" "}
+                          {parseFloat(
+                            Math.round(item.price_usd).toString()
+                          ).toFixed(2)}
+                        </div>
+                      </List.Item>
+                    )}
+                  />
+                </InfiniteScroll>
+              ) : (
+                <div className={styles.center}><Spin /> Loading ...</div>
+              )}
+            </div>
+          </Col>
+        </Row>
         <footer className={styles.footer}>
           <a
             href="https://github.com/rodacapera"
@@ -183,10 +187,10 @@ const Description: NextPage = () => {
   );
 };
 
-// export default Description;
+export default Description;
 
-const mapDispatchToProps = () => {
-  return true;
-};
+// const mapDispatchToProps = () => {
+//   return true;
+// };
 
-export default connect(null, mapDispatchToProps)(Description);
+// export default connect(null, mapDispatchToProps)(Description);
