@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
-import { useDispatch, useSelector, connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { getDetailCryptoAction } from "../../redux/reducers/cryptoReducer";
 import { getMarketCryptoAction } from "../redux/reducers/marketReducer";
 import useScript from "react-script-hook";
