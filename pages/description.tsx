@@ -10,7 +10,6 @@ import Image from "next/image";
 import { PageHeader, List, Avatar, Skeleton, Divider, Spin, Row, Col } from "antd";
 import Router from "next/router";
 import InfiniteScroll from "react-infinite-scroll-component";
-import 'antd/dist/antd.css';
 interface IRecipeState {
   crypto: any;
   market: any;
@@ -30,7 +29,6 @@ const Description: NextPage = () => {
   const [data, setData] = useState<any[]>([]);
   useScript({ src: "https://widget.coinlore.com/widgets/ticker-widget.js" });
   const widget = useScript({ src: "https://widget.coinlore.com/widgets/new-widget.js" });
-  // console.log(cryptoListDetail, marketList);
   const routes: any = routess ? JSON.parse(routess) : [];
   const custom = (props: any) => {
     return (
@@ -57,9 +55,7 @@ const Description: NextPage = () => {
   }, [marketList]);
 
   useEffect(() => {
-    // setTimeout(() => {
       loadMoreData();
-    // }, 2000);
   }, [loadMoreData]);
 
   useEffect(() => {
@@ -188,9 +184,3 @@ const Description: NextPage = () => {
 };
 
 export default Description;
-
-// const mapDispatchToProps = () => {
-//   return true;
-// };
-
-// export default connect(null, mapDispatchToProps)(Description);

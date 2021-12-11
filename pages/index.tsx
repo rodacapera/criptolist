@@ -27,18 +27,18 @@ interface IRecipeState {
 }
 
 
-const Home: NextPage<IRecipeProps> = (props) => {
+const Home = (props: IRecipeProps) => {
   const { getCrypto, getGlobalCrypto } = props;
   const [loader, setLoader] = useState(false);
   const cryptoList = useSelector((state: IRecipeState) => state?.crypto?.array);
   const globalCryptoList = useSelector(
     (state: IRecipeState) => state?.global?.array[0]
   );
-  useScript({ src: "https://widget.coinlore.com/widgets/ticker-widget.js" });
   const widget = useScript({ src: "https://widget.coinlore.com/widgets/new-widget.js" });
   const listWidget = useScript({
     src: "https://widget.coinlore.com/widgets/coinlore-list-widget.js",
   });
+  useScript({ src: "https://widget.coinlore.com/widgets/ticker-widget.js" });
 
   cryptoList.length > 0 && !loader && setLoader(true);
 

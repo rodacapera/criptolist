@@ -16,12 +16,6 @@ const rootReducer = combineReducers({
   global: globalCrypto,
 });
 
-export interface stateInitial {
-  crypto: any,
-  market: any,
-  global: any,
-}
-
 //validate if hydrate
 const reducer = (state: any, action: any) => {
   if (action.type === HYDRATE) {

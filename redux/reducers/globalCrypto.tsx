@@ -1,24 +1,18 @@
 import axios from "axios";
 import { PATH_API_CRYPTO, GET_GLOBAL_CRYPTO, GLOBAL_CRYPTO } from "../../config/globalVars";
 
-// type dataType = {
-//   base: string | null;
-//   name: string | null;
-//   price: number;
-//   price_usd: number;
-//   quote: string | null;
-//   time: number;
-//   volume: number;
-//   volume_usd: number;
-// };
-
-// constants
-const dataInitial = {
+// interfaces
+interface dataInitial {
   array: [],
-};
+}
+
+interface argsDispatch {
+  type: string;
+  payload: [];
+}
 
 //reducer
-export default function globalCryptoReducer(state = dataInitial, action: any) {
+export default function globalCryptoReducer(state: dataInitial = {array: []}, action: argsDispatch) {
   switch (action.type) {
     case GLOBAL_CRYPTO:
       return { ...state, array: action.payload };

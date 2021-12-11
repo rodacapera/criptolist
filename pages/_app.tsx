@@ -1,14 +1,12 @@
 import '../styles/globals.css'
-// import '../utils/antDesignStyles.less';
 import type { AppProps } from 'next/app'
-// import { Provider } from 'react-redux'
 import myStore from '../redux/store/store'
 import Head from "next/head";
 import { ConfigProvider } from 'antd';
+import 'antd/dist/antd.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    // <Provider store={myStore()}>
     <ConfigProvider direction="ltr">
       <Head>
         <title>CryptoList</title>
@@ -17,7 +15,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Component {...pageProps} />
     </ConfigProvider>
-    // </Provider>
   );
 }
 
