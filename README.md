@@ -1,7 +1,6 @@
-# Aplicación de pruebas para listar películas
+# Aplicación de pruebas para listar crypto monedas
 
-En esta aplicación se puede encontrar un listado de películas de cartelera o películas de fechas atrás, dichas películas,
-muestran su descripción, calificación y permite una visualización del tráiler en YouTube.
+En esta aplicación se puede encontrar un listado de crypto monedas, las cuales se puede detallar su información dando click al botón detail.
 
 ## Comenzando 🚀
 
