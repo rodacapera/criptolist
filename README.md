@@ -1,34 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Aplicación de pruebas para listar películas
 
-## Getting Started
+En esta aplicación se puede encontrar un listado de películas de cartelera o películas de fechas atrás, dichas películas,
+muestran su descripción, calificación y permite una visualización del tráiler en YouTube.
 
-First, run the development server:
+## Comenzando 🚀
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Pre-requisitos 📋
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+_Que cosas necesitas para instalar el software y como instalarlas_
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Debes tener instalado npm, yarn
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Instalación 🔧
 
-## Learn More
+_A continuación se describen los pasos para una correcta instalación de la aplicación.
 
-To learn more about Next.js, take a look at the following resources:
+Para ejecutar correctamente la aplicación, se debe realizar npm install en la raíz del proyecto, esto con el fin de instalar
+todas las dependencias necearías, posterior a esto, y correr el comando npm run dev.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Construido con 🛠️
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+_A continuación se enlistan las herramientas con las que fue contruida la aplicación_
 
-## Deploy on Vercel
+* [Ract js](https://es.reactjs.org/) - El framework web usado
+* [Npm](https://www.npmjs.com/) - Manejador de dependencias
+* [Next js](https://nextjs.org/) - Usado para proporcionar mejores funcionalidades 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Versionado 📌
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Usamos [Github](https://github.com/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/rodacapera/cryptolist).
+
+## Autores ✒️
+
+* **Rhonald Capera* - *Trabajo Inicial* - [rodacapera](https://github.com/rodacapera)
+* **Rhonald Caprera** - *Documentación* - [rodacapera](#rodacapera)
+
+## Licencia 📄
+
+Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
+
+## Expresiones de Gratitud 🎁
+
+* Comenta a otros sobre este proyecto 📢
+* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
+* Da las gracias públicamente 🤓.
+* etc.
+
+
+
+---
+⌨️ con ❤️ por [rodacapera](https://github.com/rodacapera) 😊
